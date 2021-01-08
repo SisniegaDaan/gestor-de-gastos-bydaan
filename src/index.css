@@ -1,13 +1,121 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'PT Sans', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 700;
+
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2{
+  font-size: 15px;
+}
+
+p {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+label {
+  font-size: 15px;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+button {
+  font-size: 10px;
+}
+
+/* Seccion App.js */
+
+.application {
+  background-color: #EFF1F8;
+  position: relative;
+  height: auto;
+  min-height: 100vh;
+}
+
+.btn-flotante {
+  width: 300px;
+  padding: 4px 6px;
+  position: fixed;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: white;
+  background-color: #4a65a3;  
+}
+
+.btn-flotante h2 {
+  text-transform: capitalize;
+  margin: 0;
+}
+
+/* Buttons Formulario */
+.btn-formulario {
+  color: white;
+  background-color:  #4a65a3;
+  text-transform: capitalize;
+  padding: 2px 20px;
+}
+
+.btn-status{
+  padding: 2px 5px;
+}
+
+/* Navbar component */
+.barra {
+  color: white;
+  background-color: #4a65a3!important;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  padding: 10px 0;
+}
+
+/* Balance component */
+.btn--decoration {
+  border: none;
+  background-color: transparent;
+}
+
+.btn--decoration p {
+  font-size: 10px;
+  color: gray;
+}
+
+.balance {
+  color: #4a65a3!important;
+}
+
+/* Movimiento component */
+.movimiento__flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movimiento__leftside {
+  display: flex;
+  align-items: center;
+}
+
+.movimiento__info {
+  display: flex;
+  align-items: center;
+}
+
+.btn-check{
+  width: 15px;
+  height: 15px;
+  border-radius: 40%;
+}
+
+/* Listado component */
+.listado{
+  padding-bottom: 50px;
 }
