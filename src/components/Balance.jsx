@@ -6,36 +6,13 @@ const Balance = () => {
 
     const { movimientos, ingresos, gastos, balance, actualizarBalance } = useContext(BalanceContext);
 
-    let ingresosTotales;
-    let gastosTotales;
-
-    const reducer = (acumulador, valorActual) => acumulador + valorActual;
-
-
     useEffect(() => {
-
-
-        if (movimientos.length !== 0) {
-
-            //Sumando ingresos y sumando gastos
-            if (ingresos.length !== 0) {
-                ingresosTotales = ingresos.reduce(reducer);
-            } else {
-                ingresosTotales = 0;
-            }
-
-            if (gastos.length !== 0) {
-                gastosTotales = gastos.reduce(reducer);
-            } else {
-                gastosTotales = 0;
-            }
-
-            actualizarBalance(ingresosTotales, gastosTotales);
+ 
+        if (movimientos.length !== null) {
+            actualizarBalance(ingresos, gastos);
         }
 
     }, [movimientos]);
-
-    console.log(ingresosTotales);
 
     return (
 
@@ -56,13 +33,13 @@ const Balance = () => {
                             <div className="ingresos text-success">
                                 <h2>Ingresos:</h2>
 
-                                {ingresos.length !== 0 ? <p>+${ingresos.reduce(reducer)}</p> : <p>Sin ingresos</p>}
+                                {ingresos > 0 ? <p>+${ingresos}</p> : <p>Sin ingresos</p>}
                                 
                             </div>
                             <div className="gastos text-danger">
                                 <h2>Gastos:</h2>
 
-                                {gastos.length !== 0 ? ( <p>-${gastos.reduce(reducer)}</p> ) : ( <p>Sin gastos</p>)}
+                                {gastos > 0 ? ( <p>-${gastos}</p> ) : ( <p>Sin gastos</p>)}
                                
                             </div>
                         </div>

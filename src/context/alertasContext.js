@@ -7,15 +7,25 @@ export const AlertasContext = createContext();
 const AlertasProvider = props => {
 
     //State de movimientos
-    const [ alerta, setAlerta ] = useState({msg: "", categoria: ""});
+    const [ alerta, setAlerta ] = useState(null);
+
+    //Funciones
+    const mostrarAlerta = (msg, categoria) => {
+
+        setAlerta({msg, categoria});
+
+        setTimeout(() => {
+
+            setAlerta(null);
+        }, 3000);
+    };
     
     return (
 
         <AlertasContext.Provider
             value={{
                 alerta,
-                setAlerta
-                
+                mostrarAlerta    
             }}>
 
             {props.children}

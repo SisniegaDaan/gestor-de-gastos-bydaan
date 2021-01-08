@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+//Context
+import {BalanceContext} from '../context/balanceContext';
 
 const Movimiento = ({ movimiento }) => {
 
+    //State para el boton de check
     const [check, setCheck] = useState(false);
+    //Context de Balance
+    const { eliminarMovimiento } = useContext(BalanceContext);
+
+    const handleClick = () => {
+
+        eliminarMovimiento(movimiento);  
+    };
 
     return (
 
@@ -34,7 +44,7 @@ const Movimiento = ({ movimiento }) => {
                         (<p className="m-0 text-success">+${movimiento.cantidad}</p>) :
                         (<p className="m-0 text-danger">-${movimiento.cantidad}</p>)}
 
-                    <button className="btn--decoration">
+                    <button onClick={ handleClick } className="btn--decoration">
                         <i className="fas fa-chevron-down"></i>
                     </button>
 

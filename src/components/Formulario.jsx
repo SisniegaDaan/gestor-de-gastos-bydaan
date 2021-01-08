@@ -3,12 +3,14 @@ import { v4 as uuid } from 'uuid';
 //Bootstrap Styled Component
 import { Modal, Button } from 'react-bootstrap';
 //Importanto Context
-import { BalanceContext } from '../context/balanceContext';
+import {BalanceContext} from '../context/balanceContext';
+import {AlertasContext} from '../context/alertasContext';
 
 const Formulario = ({ modal, setModal }) => {
 
     //Importando state del context
     const { agregarMovimiento, agregarIngreso, agregarGasto } = useContext(BalanceContext);
+    const { alerta, mostrarAlerta } = useContext(AlertasContext);
 
     //State local de movimiento ingresado en el formulario
     const [movimiento, setMovimiento] = useState({ nombre: "", cantidad: "", estado: true, fecha: "", id: "" });
@@ -33,7 +35,7 @@ const Formulario = ({ modal, setModal }) => {
         //Validar formulario
         if (nombre === "" || cantidad <= 0) {
             console.log("Error");
-            //Imprimir alerta
+            mostrarAlerta("Llena todos los campos correctamente", "alert alert-danger")
             return;
         }
 
@@ -65,6 +67,8 @@ const Formulario = ({ modal, setModal }) => {
         <Fragment>
             <Modal.Body>
                 <form>
+
+                    {alerta ? (<p className={alerta.categoria}> {alerta.msg} </p>) : null}
                     <div className="form-group mt-0 ml-3 mr-3">
                         <label htmlFor="nombre">Nombre del movimiento: </label>
                         <input

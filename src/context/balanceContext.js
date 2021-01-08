@@ -9,8 +9,8 @@ const BalanceProvider = props => {
     //State de movimientos
     const [movimientos, setMovimientos] = useState([]);
     //State de ingresos y gastos
-    const [ingresos, setIngresos] = useState([]);
-    const [gastos, setGastos] = useState([]);
+    const [ingresos, setIngresos] = useState(0);
+    const [gastos, setGastos] = useState(0);
 
     //State del balance (Se actualiza en cada cambio de estado de movimiento con useEffect)
     const [balance, setBalance] = useState("0");
@@ -21,11 +21,11 @@ const BalanceProvider = props => {
     }
 
     const agregarIngreso = ingreso => {
-        setIngresos([...ingresos, ingreso]);
+        setIngresos(ingresos + ingreso);
     }
 
     const agregarGasto = gasto => {
-        setGastos([...gastos, gasto]);
+        setGastos(gastos + gasto);
     }
 
     const actualizarBalance = (entradas, salidas) => {
@@ -34,17 +34,21 @@ const BalanceProvider = props => {
         setBalance(balanceTotal.toString());
     }
 
-/*     const eliminarMovimiento = movimientoEntrada => {
-        //Eliminando el movimiento del state
-        const nuevosMovimientos = movimientos.filter(movimiento => movimiento.id !== movimientoEntrada.id);
-        setMovimientos(nuevosMovimientos);
+    const eliminarMovimiento = movimientoInfo => {
 
-        //Eliminar cantidad de ingresos o gastos
-        if(movimientoEntrada.cantidad === true){ //Se elimina de ingresos
+        //Actualizar movimientos
+        setMovimientos(movimientos.filter(movimiento => movimiento.id !== movimientoInfo.id));
 
+        //Actualizar ingresos/gastos
+        if (movimientoInfo.estado) {
+            setIngresos(ingresos - movimientoInfo.cantidad);
+        } else {
+            setGastos(gastos - movimientoInfo.cantidad);
         }
 
-    } */
+        //Actualizar el state del balance
+        setBalance((ingresos - gastos).toString());
+    }
 
     return (
 
@@ -58,6 +62,7 @@ const BalanceProvider = props => {
                 agregarIngreso,
                 agregarGasto,
                 actualizarBalance,
+                eliminarMovimiento
             }}>
 
             {props.children}
